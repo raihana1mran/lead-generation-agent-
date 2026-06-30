@@ -776,14 +776,14 @@ const OutreachView = ({ leads, onApprove }) => {
             </div>
             <ScoreBar score={lead.intelligence.lead_score} />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-            <div className="outreach-block">
-              <div className="outreach-label"><Mail size={12} style={{ marginRight: '4px' }} /> Email – {lead.intelligence.personalized_message.subject_line}</div>
-              <div className="outreach-content" style={{ fontSize: '0.8rem', maxHeight: '80px', overflowY: 'auto' }}>{lead.intelligence.personalized_message.email_body}</div>
-            </div>
-            <div className="outreach-block">
-              <div className="outreach-label"><ChevronRight size={12} style={{ marginRight: '4px' }} /> LinkedIn DM</div>
-              <div className="outreach-content" style={{ fontSize: '0.8rem', maxHeight: '80px', overflowY: 'auto' }}>{lead.intelligence.personalized_message.linkedin_dm}</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div className="outreach-block" style={{ width: '100%' }}>
+              <div className="outreach-label"><Mail size={14} style={{ marginRight: '6px' }} /> Email Subject: {lead.intelligence.personalized_message.subject_line}</div>
+              <div className="outreach-content" style={{ fontSize: '0.85rem', lineHeight: '1.6', maxHeight: '200px', overflowY: 'auto', padding: '16px', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', borderLeft: '3px solid var(--accent-primary)' }}>
+                {(lead.intelligence.personalized_message.email_body || '').split('\n').map((line, idx) => (
+                  <div key={idx} style={{ marginBottom: line.trim() ? '0px' : '10px' }}>{line}</div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

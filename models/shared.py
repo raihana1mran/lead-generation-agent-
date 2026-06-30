@@ -128,7 +128,7 @@ class AIOpportunity(BaseModel):
 class PersonalizedMessage(BaseModel):
     subject_line: str
     email_body: str
-    linkedin_dm: str
+    linkedin_dm: Optional[str] = None
     key_pain_points_addressed: List[str]
 
 class MeetingBooking(BaseModel):
