@@ -183,7 +183,9 @@ def trigger_proposal_generation(lead_id: int, check_hitl: bool = True):
         input_data = {
             "lead_profile": {
                 "company": lead.company_name,
-                "score": lead.intelligence.lead_score if lead.intelligence else 0
+                "score": lead.intelligence.lead_score if lead.intelligence else 0,
+                "website_audit": lead.intelligence.website_audit if lead.intelligence else {},
+                "ai_opportunities": lead.intelligence.ai_opportunities if lead.intelligence else {}
             },
             "business_context": profile.icp
         }

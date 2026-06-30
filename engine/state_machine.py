@@ -64,7 +64,6 @@ class WorkflowEngine:
 
         # Human-in-the-loop gates — pause here if lead.requires_hitl = True
         self.hitl_gates = {
-            WorkflowState.DECISION,
             WorkflowState.PROPOSAL,
             WorkflowState.OUTREACH,
             WorkflowState.MEETING_BOOKED,

@@ -481,7 +481,7 @@ const LeadsTable = ({ leads, onApprove, onAddLead, onAutoGenerate, onDelete, onC
                   <div style={{ display: 'flex', gap: '8px' }}>
                     <button className="icon-btn" title="View Details" onClick={() => setSelectedLead(lead)}><Eye size={15} /></button>
                     <button className="icon-btn" title="Delete Lead" style={{ color: 'var(--status-hot)' }} onClick={() => onDelete(lead.id)}><Trash2 size={15} /></button>
-                    {lead.requires_hitl && ['DECISION', 'PERSONALIZATION'].includes(lead.workflow_state) && (
+                    {lead.requires_hitl && ['SCORING', 'DECISION', 'PERSONALIZATION'].includes(lead.workflow_state) && (
                       <button className="btn-primary" style={{ padding: '4px 12px', fontSize: '0.78rem' }} onClick={() => onApprove(lead.id)}>Approve</button>
                     )}
                   </div>
@@ -496,7 +496,7 @@ const LeadsTable = ({ leads, onApprove, onAddLead, onAutoGenerate, onDelete, onC
 };
 
 // ─── AI INTELLIGENCE ──────────────────────────────────────────────────────────
-const IntelligenceView = ({ leads }) => {
+const IntelligenceView = ({ leads, onApprove }) => {
   const enriched = leads.filter(l => l.intelligence?.website_audit);
   return (
     <div>
@@ -545,6 +545,11 @@ const IntelligenceView = ({ leads }) => {
                 <div style={{ marginTop: '12px', padding: '10px', background: 'rgba(99,102,241,0.08)', borderRadius: '8px', fontSize: '0.78rem', color: 'var(--text-muted)', borderLeft: '2px solid var(--accent-primary)' }}>
                   <strong style={{ color: 'var(--text-primary)' }}>📧 {lead.intelligence.personalized_message.subject_line}</strong>
                 </div>
+              )}
+              {lead.requires_hitl && ['SCORING', 'DECISION', 'PERSONALIZATION'].includes(lead.workflow_state) && (
+                <button className="btn-primary" style={{ padding: '8px 12px', fontSize: '0.8rem', marginTop: '16px', width: '100%', justifyContent: 'center' }} onClick={() => onApprove(lead.id)}>
+                  Approve Lead
+                </button>
               )}
             </div>
           ))}
@@ -614,7 +619,7 @@ const ProposalsView = () => {
 };
 
 // ─── CRM PIPELINE ─────────────────────────────────────────────────────────────
-const CRMView = ({ leads }) => {
+const CRMView = ({ leads, onApprove }) => {
   const stages = ['Lead Found', 'Qualified', 'Contacted', 'Replied', 'Meeting Scheduled', 'Proposal Sent', 'Won'];
   const getStage = (lead) => {
     const ws = lead.workflow_state;
@@ -654,6 +659,11 @@ const CRMView = ({ leads }) => {
                       <div style={{ marginTop: '8px', fontSize: '0.75rem', color: '#10b981' }}>
                         {lead.intelligence.crm_update.probability_to_close}% close probability
                       </div>
+                    )}
+                    {lead.requires_hitl && ['SCORING', 'DECISION', 'PERSONALIZATION'].includes(lead.workflow_state) && (
+                      <button className="btn-primary" style={{ padding: '6px 10px', fontSize: '0.75rem', marginTop: '10px', width: '100%', justifyContent: 'center' }} onClick={() => onApprove(lead.id)}>
+                        Approve
+                      </button>
                     )}
                   </div>
                 ))}
@@ -1058,9 +1068,9 @@ function App() {
           <>
             {currentView === 'dashboard' && <Dashboard leads={leads} />}
             {currentView === 'leads' && <LeadsTable leads={leads} onApprove={handleApprove} onAddLead={handleAddLead} onAutoGenerate={handleAutoGenerate} onDelete={handleDeleteLead} onClearAll={handleClearAllLeads} />}
-            {currentView === 'intelligence' && <IntelligenceView leads={leads} />}
+            {currentView === 'intelligence' && <IntelligenceView leads={leads} onApprove={handleApprove} />}
             {currentView === 'proposals' && <ProposalsView />}
-            {currentView === 'crm' && <CRMView leads={leads} />}
+            {currentView === 'crm' && <CRMView leads={leads} onApprove={handleApprove} />}
             {currentView === 'analytics' && <AnalyticsView leads={leads} />}
             {currentView === 'outreach' && <OutreachView leads={leads} onApprove={handleApprove} />}
             {currentView === 'settings' && <SettingsForm />}

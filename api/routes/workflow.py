@@ -21,11 +21,16 @@ def approve_lead_hitl(lead_id: int, background_tasks: BackgroundTasks, db: Sessi
     if not lead.requires_hitl:
         raise HTTPException(status_code=400, detail="Lead does not require human approval")
         
-    from engine.events import trigger_outreach
+    from engine.events import trigger_outreach, trigger_lead_decision
     
     current_state = lead.workflow_state
     
-    if current_state == WorkflowState.DECISION.value:
+    if current_state == WorkflowState.SCORING.value:
+        # Lead finished scoring but needs approval to enter DECISION pipeline
+        background_tasks.add_task(trigger_lead_decision, lead.id)
+        return {"message": f"Lead {lead_id} approved. Decision pipeline started."}
+    
+    elif current_state == WorkflowState.DECISION.value:
         # Trigger proposal generation bypassing the HITL gate
         background_tasks.add_task(trigger_proposal_generation, lead.id, False)
         return {"message": f"Lead {lead_id} approved. Proposal drafting started."}

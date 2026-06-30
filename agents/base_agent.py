@@ -213,7 +213,59 @@ class BaseAgent:
             elif field_name == "title":
                 fallback_dict[field_name] = f"AI Automation & Growth Proposal for {company_name}"
             elif field_name == "executive_summary":
-                fallback_dict[field_name] = f"Proposal to implement custom AI Support and CRM integrations for {company_name} to drive 20% growth."
+                fallback_dict[field_name] = f"Strategic proposal to implement customized AI automation and intelligent workflow agents for {company_name} to optimize operations and accelerate growth."
+            elif field_name == "problem_statement":
+                name_lower = company_name.lower()
+                if any(w in name_lower for w in ["restaurant", "food", "cafe", "pizza", "kitchen", "grill", "diner", "bakery", "crumbl"]):
+                    fallback_dict[field_name] = f"High volume of manual reservation inquiries and menu FAQs are consuming staff time, leading to missed booking opportunities during peak hours and slower response times."
+                elif any(w in name_lower for w in ["real estate", "realty", "immobilien", "property", "housing", "estate", "homes"]):
+                    fallback_dict[field_name] = f"Real estate agents are spending excessive time on repetitive initial inquiries, qualifying cold leads, and manually scheduling property viewings, reducing time spent closing deals."
+                elif any(w in name_lower for w in ["medical", "clinic", "health", "doctor", "dental", "plastic", "hospital"]):
+                    fallback_dict[field_name] = f"Front desk staff are overwhelmed by incoming appointment booking calls and repetitive medical FAQs, leading to patient hold times and potential booking leakage."
+                elif any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    fallback_dict[field_name] = f"E-commerce customers expect instant answers regarding order status, shipping, and returns. High cart abandonment rates and slow support response times are directly impacting online sales."
+                else:
+                    fallback_dict[field_name] = f"{company_name} faces operational bottlenecks due to manual handling of repetitive customer inquiries, lead qualification, and appointment scheduling workflows."
+            elif field_name == "solution":
+                name_lower = company_name.lower()
+                if any(w in name_lower for w in ["restaurant", "food", "cafe", "pizza", "kitchen", "grill", "diner", "bakery", "crumbl"]):
+                    fallback_dict[field_name] = f"Deploy an AI Reservation Bot and Menu FAQ Agent to instantly handle table bookings and customer queries 24/7 across website and social channels."
+                elif any(w in name_lower for w in ["real estate", "realty", "immobilien", "property", "housing", "estate", "homes"]):
+                    fallback_dict[field_name] = f"Implement a Property Listing Bot and Virtual Tour Booking Agent to pre-qualify buyers and schedule viewings automatically."
+                elif any(w in name_lower for w in ["medical", "clinic", "health", "doctor", "dental", "plastic", "hospital"]):
+                    fallback_dict[field_name] = f"Introduce a HIPAA-compliant Patient Appointment Scheduler and Medical FAQ Bot to automate front-desk booking and patient inquiry routing."
+                elif any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    fallback_dict[field_name] = f"Deploy an AI Product Recommendation Engine and Cart Abandonment Recovery Agent to automate order tracking, upsells, and customer support."
+                else:
+                    fallback_dict[field_name] = f"Deploy a custom AI Customer Support Bot and Booking Automation Agent integrated directly into your existing operational stack."
+            elif field_name == "features":
+                name_lower = company_name.lower()
+                if any(w in name_lower for w in ["restaurant", "food", "cafe", "pizza", "kitchen", "grill", "diner", "bakery", "crumbl"]):
+                    fallback_dict[field_name] = ["24/7 automated table reservations", "Instant menu ingredient & allergen FAQs", "SMS booking confirmation & reminders"]
+                elif any(w in name_lower for w in ["real estate", "realty", "immobilien", "property", "housing", "estate", "homes"]):
+                    fallback_dict[field_name] = ["Automated buyer budget & location pre-qualification", "Interactive property tour scheduling", "Syncs directly with agency CRM"]
+                elif any(w in name_lower for w in ["medical", "clinic", "health", "doctor", "dental", "plastic", "hospital"]):
+                    fallback_dict[field_name] = ["Patient appointment scheduling & rescheduling", "Insurance verification assistance", "Symptom-routing FAQ logic"]
+                elif any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    fallback_dict[field_name] = ["Real-time shipping and order status tracking", "Automated cart abandonment email & chat reminders", "Personalized product upsells"]
+                else:
+                    fallback_dict[field_name] = ["24/7 multi-channel instant responses", "Intelligent lead scoring & qualification", "Calendar integration for seamless booking"]
+            elif field_name == "timeline":
+                fallback_dict[field_name] = "Phase 1: Discovery & Agent Setup (Week 1) -> Phase 2: Knowledge Base Training (Week 2) -> Phase 3: Live Integration & Go-Live (Week 3)"
+            elif field_name == "pricing":
+                name_lower = company_name.lower()
+                if any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    fallback_dict[field_name] = "$1,200 setup fee + $199/month (includes E-commerce Agent & Cart Recovery)"
+                else:
+                    fallback_dict[field_name] = "$1,500 setup fee + $249/month (includes Custom AI Agent & CRM Integration)"
+            elif field_name == "roi_analysis":
+                name_lower = company_name.lower()
+                if any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    fallback_dict[field_name] = "Expected 15-25% reduction in cart abandonment and up to 40% reduction in customer support response times within 30 days."
+                else:
+                    fallback_dict[field_name] = "Saves an estimated 15-20 hours of manual work per week by automating lead intake, qualifying prospects, and scheduling appointments."
+            elif field_name == "call_to_action":
+                fallback_dict[field_name] = "Schedule a brief 10-minute live demonstration to see your custom AI Agent in action. Click the booking link below."
             elif field_name == "proposed_solutions":
                 fallback_dict[field_name] = [
                     {"solution": "AI Support Bot", "benefit": "24/7 instant FAQ response", "price": "$1,500"},

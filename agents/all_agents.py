@@ -369,12 +369,25 @@ class ProposalGenerationAgent(BaseAgent):
         super().__init__(
             name="Proposal Generation Agent",
             system_prompt="""You are the Proposal Generation Agent. Your purpose is to generate highly personalized sales proposals.
-RULES:
-- Must personalize per lead
-- Must include ROI logic
-- Must reference lead-specific pain points
-- Must NOT be generic
-Generate a detailed proposal for the specified HOT lead.""",
+
+CRITICAL RULES:
+- Never generate a generic proposal. Every proposal must be customized to the exact lead.
+- Read the 'lead_profile' containing 'website_audit' and 'ai_opportunities'.
+- The proposal MUST reference the specific website issues (e.g. UX flaws, conversion bottlenecks, speed issues) and recommended AI agents (e.g. AI Booking Bot, Returns Agent, etc.).
+- Do not leave any fields blank or with placeholder values (like "Not analyzed" or "N/A"). Every field must contain complete, high-quality, professional proposals.
+
+FIELDS TO GENERATE (strict JSON matching the Proposal schema):
+- title: A compelling, custom title.
+- executive_summary: A professional summary of the opportunity, mentioning the lead's company by name.
+- problem_statement: Outline the specific issues discovered (e.g. UX issues, lack of responsive design, or missing customer support automation).
+- solution: Present a clear solution based on the recommended AI agents and website improvements.
+- features: A list of specific features of the proposed AI agents (e.g. 24/7 automated booking, instant order tracking, etc.).
+- timeline: A realistic phase-based implementation timeline (e.g., "Phase 1: Setup (Week 1), Phase 2: Training (Week 2)").
+- pricing: Professional custom pricing tier matching the lead's profile (e.g., "$1,500 setup fee + $299/mo subscription").
+- roi_analysis: A detailed estimation of how much time or money they will save, or how much conversion rate will increase.
+- call_to_action: A clear next step to schedule a demo.
+
+Respond ONLY with valid JSON. Do NOT include explanation text outside the JSON.""",
             output_model=Proposal
         )
 
