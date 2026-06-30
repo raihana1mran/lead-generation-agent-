@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Brand Colors */
+  --primary: #5d4ac5;
+  --primary-container: #9381ff;
+  --on-primary: #ffffff;
+  --on-primary-container: #290090;
+  
+  --secondary: #575898;
+  --secondary-container: #b8b8ff;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #464685;
+
+  --tertiary: #755844;
+  --tertiary-container: #ad8c75;
+  --on-tertiary-container: #3d2716;
+
+  /* Surfaces & Backgrounds */
+  --bg-base: #fcf8ff; /* background */
+  --bg-surface: #ffffff; /* surface-container-lowest */
+  --bg-elevated: #ffffff; /* surface-container-lowest */
+  --bg-panel: #ffffff;
+  --bg-panel-hover: #f0ebff; /* surface-container */
+
+  /* Neutral Text */
+  --text-primary: #1a1736; /* on-background / on-surface */
+  --text-muted: #484553; /* on-surface-variant */
+  --text-dim: #787585; /* outline */
+  
+  /* Accent primary */
+  --accent-primary: #5d4ac5;
+  --accent-secondary: #9381ff;
+  --accent-glow: rgba(147, 129, 255, 0.08);
+
+  /* Status Colors */
+  --status-hot: #ba1a1a;
+  --status-warm: #755844;
+  --status-success: #10b981;
+
+  /* Spacing */
+  --spacing-base: 8px;
+  --spacing-xs: 4px;
+  --spacing-sm: 12px;
+  --spacing-md: 24px;
+  --spacing-lg: 40px;
+  --spacing-xl: 64px;
+
+  /* Rounded Corners */
+  --rounded-sm: 0.25rem;
+  --rounded-default: 0.5rem;
+  --rounded-md: 0.75rem;
+  --rounded-lg: 1rem;
+  --rounded-xl: 1.5rem;
+  --rounded-full: 9999px;
+
+  /* Glass / Card border */
+  --glass-bg: #ffffff;
+  --glass-border: rgba(184, 184, 255, 0.2); /* #b8b8ff at 20% opacity */
+  --glass-hover: #f6f1ff; /* surface-container-low */
+
+  --sidebar-w: 260px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(147, 129, 255, 0.04), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(184, 184, 255, 0.06), transparent 50%);
+}
+
+/* Glassmorphism Panel / LeadForge Refined Card */
+.glass-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--rounded-lg);
+  box-shadow: 0px 4px 20px rgba(147, 129, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--primary-container);
+  box-shadow: 0px 8px 30px rgba(147, 129, 255, 0.12);
+}
+
+/* Micro Animations */
+.hover-lift {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2.25rem;
+  letter-spacing: -0.02em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--outline-variant, #c9c4d5);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

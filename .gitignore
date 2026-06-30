@@ -1,0 +1,35 @@
+# Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Databases
+*.db
+*.sqlite3
+
+# Environment credentials
+.env
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.svelte-kit/
+.next/
+.nuxt/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
