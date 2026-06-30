@@ -203,10 +203,14 @@ def trigger_proposal_generation(lead_id: int, check_hitl: bool = True):
         # STATE 8: Personalization
         if not workflow_engine.transition_state(lead.id, WorkflowState.PERSONALIZATION):
             return
+        
+        portfolio_url = profile.website if (profile and profile.website) else "https://raihana.dev"
         personalization_data = {
             "company_name": lead.company_name,
             "website_audit": lead.intelligence.website_audit if lead.intelligence else {},
-            "ai_opportunities": lead.intelligence.ai_opportunities if lead.intelligence else {}
+            "ai_opportunities": lead.intelligence.ai_opportunities if lead.intelligence else {},
+            "freelancer_name": "Raihana",
+            "portfolio_url": portfolio_url
         }
         personalized_message = agent_personalize.run(personalization_data)
         if lead.intelligence:

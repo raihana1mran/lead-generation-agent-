@@ -205,11 +205,53 @@ class BaseAgent:
             elif field_name == "classification":
                 fallback_dict[field_name] = "HOT"
             elif field_name == "subject_line":
-                fallback_dict[field_name] = f"Partnership Opportunity for {company_name} - AI Customer Automation"
+                name_lower = company_name.lower()
+                if any(w in name_lower for w in ["restaurant", "food", "cafe", "pizza", "kitchen", "grill", "diner", "bakery", "crumbl"]):
+                    fallback_dict[field_name] = f"Automating Table Bookings & FAQs for {company_name}"
+                elif any(w in name_lower for w in ["real estate", "realty", "immobilien", "property", "housing", "estate", "homes"]):
+                    fallback_dict[field_name] = f"Automating Property Tours & Leads for {company_name}"
+                elif any(w in name_lower for w in ["medical", "clinic", "health", "doctor", "dental", "plastic", "hospital"]):
+                    fallback_dict[field_name] = f"Automating Appointment Scheduling for {company_name}"
+                elif any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    fallback_dict[field_name] = f"Recovering Cart Abandonment & FAQs for {company_name}"
+                else:
+                    fallback_dict[field_name] = f"AI Automation & Operations Optimization for {company_name}"
             elif field_name == "email_body":
-                fallback_dict[field_name] = f"Hi Team,\n\nI noticed some opportunities to optimize the digital experience for {company_name}, particularly in customer response times and checkout conversions.\n\nWe build custom AI Support Agents that integrate directly into your workflow to automate FAQs and recover cart drops.\n\nWould you be open to a quick 10-minute demo next Tuesday?\n\nBest,\nLeadForge AI Team"
+                name_lower = company_name.lower()
+                portfolio_url = "https://raihana.dev"
+                if isinstance(input_data, dict) and "portfolio_url" in input_data:
+                    portfolio_url = input_data["portfolio_url"]
+                
+                if any(w in name_lower for w in ["restaurant", "food", "cafe", "pizza", "kitchen", "grill", "diner", "bakery", "crumbl"]):
+                    agent_pitch = "an AI Reservation Bot and Menu FAQ Agent to instantly book tables and answer customer questions 24/7."
+                elif any(w in name_lower for w in ["real estate", "realty", "immobilien", "property", "housing", "estate", "homes"]):
+                    agent_pitch = "a Property Listing Bot and Virtual Tour Booking Agent to pre-qualify buyers and schedule property viewings automatically."
+                elif any(w in name_lower for w in ["medical", "clinic", "health", "doctor", "dental", "plastic", "hospital"]):
+                    agent_pitch = "a HIPAA-compliant Patient Appointment Scheduler and Medical FAQ Bot to handle booking calls and patient inquiries."
+                elif any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    agent_pitch = "a Product Recommendation Engine and Cart Abandonment Recovery Agent to automate shipping status, upsells, and cart recovery."
+                else:
+                    agent_pitch = "custom AI Customer Support and Booking Automation Agents to streamline lead intake and customer support."
+                
+                fallback_dict[field_name] = f"Hi Team,\n\nI noticed some opportunities to optimize the digital experience for {company_name}, particularly around customer response times and booking/checkout conversions.\n\nI'm a freelance AI Automation Engineer and I specialize in building custom AI agents. For {company_name}, I can implement {agent_pitch}\n\nYou can view some of my recent work and client case studies in my portfolio here: {portfolio_url}\n\nWould you be open to a quick 10-minute chat next Tuesday to see a live demo?\n\nBest,\nRaihana\nFreelance AI Automation Developer"
             elif field_name == "linkedin_dm":
-                fallback_dict[field_name] = f"Hi there! Love what you guys are doing at {company_name}. I did a quick digital audit and found a few spots where an AI Agent could save 20+ hours/week in customer support. Open to a quick chat?"
+                name_lower = company_name.lower()
+                portfolio_url = "https://raihana.dev"
+                if isinstance(input_data, dict) and "portfolio_url" in input_data:
+                    portfolio_url = input_data["portfolio_url"]
+                
+                if any(w in name_lower for w in ["restaurant", "food", "cafe", "pizza", "kitchen", "grill", "diner", "bakery", "crumbl"]):
+                    agent_pitch = "an AI Reservation Bot to handle table bookings 24/7"
+                elif any(w in name_lower for w in ["real estate", "realty", "immobilien", "property", "housing", "estate", "homes"]):
+                    agent_pitch = "a Property Listing Bot to pre-qualify buyers and book viewings"
+                elif any(w in name_lower for w in ["medical", "clinic", "health", "doctor", "dental", "plastic", "hospital"]):
+                    agent_pitch = "a Patient Appointment Scheduler to automate booking calls"
+                elif any(w in name_lower for w in ["shop", "store", "retail", "ecommerce", "mart", "boutique", "flower"]):
+                    agent_pitch = "a Cart Abandonment Recovery Agent to recover lost online sales"
+                else:
+                    agent_pitch = "custom AI Customer Support and Booking Agents"
+
+                fallback_dict[field_name] = f"Hi there! Love what you guys are doing at {company_name}. I did a quick digital audit and found a few spots where {agent_pitch} could save 15+ hours/week and capture more leads.\n\nI'm a freelance AI developer—you can check out my portfolio here: {portfolio_url}\n\nOpen to a quick 5-minute chat?"
             elif field_name == "title":
                 fallback_dict[field_name] = f"AI Automation & Growth Proposal for {company_name}"
             elif field_name == "executive_summary":
