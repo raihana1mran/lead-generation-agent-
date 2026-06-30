@@ -15,9 +15,11 @@ class BusinessProfileCreate(BaseModel):
     target_customers: str
     pricing: str
     geography: str
+    website: Optional[str] = None
 
 class BusinessProfileResponse(BusinessProfileCreate):
     id: int
+    website: Optional[str] = None
     icp: Optional[dict] = None
 
     class Config:

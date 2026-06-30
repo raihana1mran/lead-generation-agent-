@@ -61,7 +61,14 @@ def trigger_lead_enrichment(lead_id: int):
         # STATE 3: AI Opportunity
         if not workflow_engine.transition_state(lead.id, WorkflowState.AI_OPPORTUNITY):
             return
-        ai_opp_result = agent_ai_opp.run({"industry": "Unknown", "size": "Unknown"})
+        ai_opp_result = agent_ai_opp.run({
+            "company_name": lead.company_name,
+            "website": lead.website or "",
+            "source": lead.source or "",
+            "location": lead.location or "",
+            "industry": lead.source or "Business",
+            "size": "Unknown"
+        })
 
         # STATE 4: Enrichment
         if not workflow_engine.transition_state(lead.id, WorkflowState.ENRICHMENT):

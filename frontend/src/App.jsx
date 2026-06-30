@@ -784,7 +784,7 @@ const OutreachView = ({ leads, onApprove }) => {
 
 // ─── SETTINGS ─────────────────────────────────────────────────────────────────
 const SettingsForm = () => {
-  const [formData, setFormData] = useState({ company_name: '', industry: '', services: '', target_customers: '', pricing: '', geography: '' });
+  const [formData, setFormData] = useState({ company_name: '', industry: '', services: '', target_customers: '', pricing: '', geography: '', website: '' });
   const [geoConfig, setGeoConfig] = useState({
     tier1_countries: '',
     tier2_countries: '',
@@ -901,6 +901,7 @@ const SettingsForm = () => {
               ['target_customers', 'Target Customers', 'SMBs in Tier 1 countries'],
               ['pricing', 'Pricing Model', '$2,000 - $50,000 per project'],
               ['geography', 'Geography', 'USA, UK, Canada, Australia, Germany'],
+              ['website', 'Website URL', 'https://yourcompany.com'],
             ].map(([k, l, p]) => (
               <div className="form-group" key={k}>
                 <label>{l}</label>

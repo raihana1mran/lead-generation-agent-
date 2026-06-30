@@ -14,6 +14,7 @@ class BusinessProfile(Base):
     target_customers = Column(String)
     pricing = Column(String)
     geography = Column(String)
+    website = Column(String, nullable=True)
     icp = Column(JSON, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
